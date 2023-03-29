@@ -2,7 +2,7 @@
 
 - [ ] Edit todo
 - [x] Delete todo
-- [ ] Check todo
-- [ ] Select all and deselect all todo
+- [x] Check todo
+- [x] Select all and deselect all todos
 - [x] Hide clear completed if no completed tasks
 - [ ] Save in local storage

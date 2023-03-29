@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 
+import Form from '@/components/Form';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Todos from '@/components/Todos';
@@ -32,18 +33,19 @@ const App = () => {
 
   return (
     <div className='container'>
-      {/* Header */}
       <Header />
 
-      {todos.length > 0 && (
+      {todos.length === 0 ? (
+        <main className='main'>
+          <Form />
+        </main>
+      ) : (
         <>
-          {/* Main */}
           <main className='main'>
-            {/* Todos */}
+            <Form />
             <Todos todos={filteredTodos} />
           </main>
 
-          {/* Footer  */}
           <Footer
             activeTabIndex={activeTabIndex}
             handleTabChange={handleTabChange}
