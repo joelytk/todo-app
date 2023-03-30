@@ -5,4 +5,4 @@
 - [x] Check todo
 - [x] Select all and deselect all todos
 - [x] Hide clear completed if no completed tasks
-- [ ] Save in local storage
+- [x] Save in local storage

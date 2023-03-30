@@ -1,19 +1,12 @@
-import { createContext, useEffect, useRef, useState } from 'react';
+import { createContext, useRef } from 'react';
+
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 export const TodoContext = createContext();
 
 const TodoProvider = ({ children }) => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useLocalStorage('todos', []);
   const counter = useRef(1);
-
-  useEffect(() => {
-    const todos = localStorage.getItem('todos');
-    setTodos(todos ? JSON.parse(todos) : []);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
 
   const activeTodos = todos.filter(todo => !todo.completed);
   const completedTodos = todos.filter(todo => todo.completed);
