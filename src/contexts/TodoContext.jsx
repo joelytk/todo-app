@@ -1,4 +1,4 @@
-import { createContext, useRef } from 'react';
+import { createContext, useRef, useState } from 'react';
 
 import useLocalStorage from '@/hooks/useLocalStorage';
 
@@ -7,6 +7,7 @@ export const TodoContext = createContext();
 const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useLocalStorage('todos', []);
   const counter = useRef(1);
+  const [selectedId, setSelectedId] = useState('');
 
   const activeTodos = todos.filter(todo => !todo.completed);
   const completedTodos = todos.filter(todo => todo.completed);
@@ -25,6 +26,14 @@ const TodoProvider = ({ children }) => {
     counter.current += 1;
   };
 
+  const editTodo = ({ id, message }) => {
+    setTodos(todos.map(todo => (id === todo.id ? { ...todo, message } : todo)));
+  };
+
+  const deleteTodo = id => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   const toggleTodo = id => {
     setTodos(
       todos.map(todo =>
@@ -41,10 +50,6 @@ const TodoProvider = ({ children }) => {
     }
   };
 
-  const deleteTodo = id => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
-
   const clearCompleted = () => {
     setTodos(todos.filter(todo => !todo.completed));
   };
@@ -55,10 +60,13 @@ const TodoProvider = ({ children }) => {
         todos,
         activeTodos,
         completedTodos,
+        selectedId,
+        setSelectedId,
         addTodo,
+        editTodo,
+        deleteTodo,
         toggleTodo,
         completeAllTodos,
-        deleteTodo,
         clearCompleted
       }}
     >

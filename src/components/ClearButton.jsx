@@ -6,7 +6,10 @@ const ClearButton = () => {
   const { clearCompleted } = useContext(TodoContext);
 
   return (
-    <button onClick={clearCompleted} className='btn'>
+    <button
+      onClick={clearCompleted}
+      className='btn btn-link clear-completed-btn'
+    >
       Clear Completed
     </button>
   );

@@ -86,6 +86,7 @@ ul {
   display: flex;
   align-items: center;
   flex: 1;
+  position: relative;
 }
 
 .checkbox {
@@ -124,27 +125,44 @@ input:checked + .checkbox:after {
   padding-left: 16px;
 }
 
-.todo-actions {
-  display: flex;
+.todo-input {
+  position: absolute;
+  top: 50%;
+  left: 34px;
+  transform: translateY(-50%);
+  width: calc(100% - 34px);
+  font-size: 1.25rem;
+  border: none;
+  border-bottom: 1px solid var(--primary);
+  background-color: var(--background);
+  outline: none;
+}
+
+.close-btn {
+  display: none;
+  width: 16px;
+  height: 16px;
 }
 
 .footer {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 16px;
   border: 1px solid var(--primary);
   margin-bottom: 64px;
+  height: 96px;
+}
+
+.counter {
+  float: left;
 }
 
 .tabs {
   display: flex;
   gap: 8px;
   position: absolute;
-  top: 50%;
+  bottom: 16px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }
 
 .tab-item {
@@ -169,23 +187,26 @@ input:checked + .checkbox:after {
   font-size: 1rem;
 }
 
-.btn:hover {
+.btn-link:hover {
   text-decoration: underline;
 }
 
-.icon-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  box-shadow: none;
-  border: none;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+.clear-completed-btn {
+  float: right;
 }
 
-.icon-btn:hover {
-  background-color: rgba(225, 225, 225, 0.1);
+.todo-item:hover .close-btn {
+  display: block;
+}
+
+@media screen and (min-width: 576px) {
+  .footer {
+    height: 52px;
+  }
+
+  .tabs {
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+  }
 }

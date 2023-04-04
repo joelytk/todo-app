@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 
+import Footer from '@/components/Footer';
 import Form from '@/components/Form';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Todos from '@/components/Todos';
 import { TodoContext } from '@/contexts/TodoContext';
+
+import './index.css';
 
 const App = () => {
   const { todos } = useContext(TodoContext);
