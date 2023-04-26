@@ -18,7 +18,3 @@ $ cd todo-app
 $ yarn
 $ yarn dev
 ```
-
-## Checklist
-- [ ] TypeScript
-- [ ] Code Splitting
