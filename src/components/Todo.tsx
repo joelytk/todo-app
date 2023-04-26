@@ -1,41 +1,47 @@
+import type { ChangeEvent, FC, KeyboardEvent } from 'react';
 import { useContext, useState } from 'react';
 import { BsXLg } from 'react-icons/bs';
 
 import { TodoContext } from '@/contexts/TodoContext';
+import type TodoType from '@/interfaces/Todo';
 
-const Todo = ({ todo }) => {
+interface TodoProps {
+  todo: TodoType;
+}
+
+const Todo: FC<TodoProps> = ({ todo }) => {
   const { toggleTodo, editTodo, deleteTodo, selectedId, setSelectedId } =
     useContext(TodoContext);
   const [value, setValue] = useState('');
 
-  const { id, message, completed } = todo;
+  const { id, text, completed } = todo;
 
-  const handleDoubleClick = id => () => {
+  const handleDoubleClick = (id: number) => () => {
     setSelectedId(id);
-    setValue(message);
+    setValue(text);
   };
 
-  const handleChange = e => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
-  const handleKeyDown = id => e => {
+  const handleKeyDown = (id: number) => (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleEdit(id);
     }
   };
 
-  const handleEdit = id => {
+  const handleEdit = (id: number) => {
     if (value !== '') {
       editTodo({
         id,
-        message: value
+        text: value
       });
     } else {
       deleteTodo(id);
     }
 
-    setSelectedId('');
+    setSelectedId(0);
   };
 
   return (
@@ -44,7 +50,7 @@ const Todo = ({ todo }) => {
         <input type='checkbox' checked={completed} readOnly hidden />
         <span className='checkbox' onClick={() => toggleTodo(id)}></span>
         <label className='todo-label' onDoubleClick={handleDoubleClick(id)}>
-          {message}
+          {text}
         </label>
         {selectedId === id && (
           <input

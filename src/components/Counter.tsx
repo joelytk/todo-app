@@ -1,8 +1,9 @@
+import type { FC } from 'react';
 import { useContext } from 'react';
 
 import { TodoContext } from '@/contexts/TodoContext';
 
-const Counter = () => {
+const Counter: FC = () => {
   const { activeTodos } = useContext(TodoContext);
 
   return (

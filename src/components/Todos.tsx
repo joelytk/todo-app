@@ -1,6 +1,12 @@
+import type TodoType from '@/interfaces/Todo';
+import type { FC } from 'react';
 import Todo from './Todo';
 
-const Todos = ({ todos }) => {
+interface TodosProps {
+  todos: TodoType[];
+}
+
+const Todos: FC<TodosProps> = ({ todos }) => {
   return (
     <ul className='todo-list'>
       {todos.map(todo => (

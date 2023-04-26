@@ -1,6 +1,15 @@
+import type { FC } from 'react';
+
+import type TabType from '@/interfaces/Tab';
 import Tab from './Tab';
 
-const Tabs = ({ tabs, activeTabIndex, handleTabChange }) => {
+interface TabsProps {
+  tabs: TabType[];
+  activeTabIndex: number;
+  handleTabChange: (tabIndex: number) => void;
+}
+
+const Tabs: FC<TabsProps> = ({ tabs, activeTabIndex, handleTabChange }) => {
   return (
     <ul className='tabs'>
       {tabs.map(tab => (

@@ -1,19 +1,20 @@
+import type { FC, FormEvent } from 'react';
 import { useContext, useRef } from 'react';
 
 import { TodoContext } from '@/contexts/TodoContext';
 
-const Form = () => {
+const Form: FC = () => {
   const { todos, addTodo, completeAllTodos } = useContext(TodoContext);
-  const form = useRef(null);
+  const form = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    const message = form.current['text-input'].value.trim();
+    const message = form.current?.['text-input'].value.trim();
 
     if (message !== '') {
       addTodo(message);
-      form.current.reset();
+      form.current?.reset();
     }
   };
 
@@ -27,7 +28,7 @@ const Form = () => {
             readOnly
             hidden
           />
-          <span className='checkbox' onClick={completeAllTodos}></span>
+          <span className='checkbox' onClick={() => completeAllTodos()}></span>
         </div>
       )}
 

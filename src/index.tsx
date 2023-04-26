@@ -5,7 +5,7 @@ import TodoProvider from '@/contexts/TodoContext';
 
 import App from './App';
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <TodoProvider>
       <App />

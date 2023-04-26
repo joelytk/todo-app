@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useContext, useEffect, useState } from 'react';
 
 import Footer from '@/components/Footer';
@@ -5,13 +6,14 @@ import Form from '@/components/Form';
 import Header from '@/components/Header';
 import Todos from '@/components/Todos';
 import { TodoContext } from '@/contexts/TodoContext';
+import type TodoType from '@/interfaces/Todo';
 
 import './index.css';
 
-const App = () => {
+const App: FC = () => {
   const { todos } = useContext(TodoContext);
-  const [filteredTodos, setFilteredTodos] = useState([]);
-  const [activeTabIndex, setActiveTabIndex] = useState(1);
+  const [filteredTodos, setFilteredTodos] = useState<TodoType[]>([]);
+  const [activeTabIndex, setActiveTabIndex] = useState<number>(1);
 
   useEffect(() => {
     switch (activeTabIndex) {
@@ -29,7 +31,7 @@ const App = () => {
     }
   }, [activeTabIndex, todos]);
 
-  const handleTabChange = tabIndex => {
+  const handleTabChange = (tabIndex: number) => {
     setActiveTabIndex(tabIndex);
   };
 
