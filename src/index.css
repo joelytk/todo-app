@@ -1,6 +1,11 @@
 :root {
-  --background: #282c34;
-  --primary: #61dafb;
+  --background: #f5f5f5;
+  --primary: #4d4d4d;
+  --primary-rgb: 77, 77, 77;
+  --background-dark: #282c34;
+  --primary-dark: #61dafb;
+  --primary-dark-rgb: 97, 218, 251;
+  --transition-duration: 300ms;
 }
 
 * {
@@ -9,11 +14,21 @@
   padding: 0;
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-  color: #61dafb;
+}
+
+.dark {
+  color-scheme: dark;
 }
 
 body {
   background-color: var(--background);
+  color: var(--primary);
+  transition: all var(--transition-duration);
+}
+
+.dark body {
+  background-color: var(--background-dark);
+  color: var(--primary-dark);
 }
 
 ul {
@@ -56,9 +71,20 @@ ul {
   outline: none;
   border: none;
   background-color: var(--background);
+  color: var(--primary);
+  transition: all var(--transition-duration);
   padding: 16px;
   padding-left: 50px;
   font-size: 1.25rem;
+}
+
+.text-input::placeholder {
+  opacity: 0.3;
+}
+
+.dark .text-input {
+  background-color: var(--background-dark);
+  color: var(--primary-dark);
 }
 
 .todo-list {
@@ -100,7 +126,11 @@ ul {
 }
 
 .checkbox:hover {
-  background-color: rgba(97, 218, 251, 0.25);
+  background-color: rgba(var(--primary-rgb), 0.25);
+}
+
+.dark .checkbox:hover {
+  background-color: rgba(var(--primary-dark-rgb), 0.25);
 }
 
 .checkbox:after {
@@ -173,11 +203,19 @@ input:checked + .checkbox:after {
 }
 
 .tab-item:hover {
-  border-color: rgba(97, 218, 251, 0.25);
+  border-color: rgba(var(--primary-rgb), 0.25);
+}
+
+.dark .tab-item:hover {
+  border-color: rgba(var(--primary-dark-rgb), 0.25);
 }
 
 .tab-item.active {
-  border-color: rgba(97, 218, 251, 0.5);
+  border-color: rgba(var(--primary-rgb), 0.5);
+}
+
+.dark .tab-item.active {
+  border-color: rgba(var(--primary-dark-rgb), 0.5);
 }
 
 .btn {
@@ -193,6 +231,16 @@ input:checked + .checkbox:after {
 
 .clear-completed-btn {
   float: right;
+}
+
+.theme-toggle-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+}
+
+.dark .theme-toggle-btn {
+  color: var(--primary-dark);
 }
 
 .todo-item:hover .close-btn {

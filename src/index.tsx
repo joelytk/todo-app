@@ -4,11 +4,14 @@ import { createRoot } from 'react-dom/client';
 import TodoProvider from '@/contexts/TodoContext';
 
 import App from './App';
+import ThemeProvider from './contexts/ThemeContext';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
-    <TodoProvider>
-      <App />
-    </TodoProvider>
+    <ThemeProvider>
+      <TodoProvider>
+        <App />
+      </TodoProvider>
+    </ThemeProvider>
   </StrictMode>
 );

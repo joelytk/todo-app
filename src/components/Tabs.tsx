@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 
 import type TabType from '@/interfaces/Tab';
-import Tab from './Tab';
 
 interface TabsProps {
   tabs: TabType[];
@@ -21,6 +20,23 @@ const Tabs: FC<TabsProps> = ({ tabs, activeTabIndex, handleTabChange }) => {
         />
       ))}
     </ul>
+  );
+};
+
+interface TabProps {
+  tab: TabType;
+  isActive: boolean;
+  handleTabChange: (tabIndex: number) => void;
+}
+
+const Tab: FC<TabProps> = ({ tab, isActive, handleTabChange }) => {
+  return (
+    <li
+      className={`tab-item${isActive ? ' active' : ''}`}
+      onClick={() => handleTabChange(tab.id)}
+    >
+      {tab.label}
+    </li>
   );
 };
 

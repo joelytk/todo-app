@@ -1,10 +1,7 @@
 import type { FC } from 'react';
 import { useContext, useEffect, useState } from 'react';
 
-import Footer from '@/components/Footer';
-import Form from '@/components/Form';
-import Header from '@/components/Header';
-import Todos from '@/components/Todos';
+import { Footer, Form, Header, ThemeToggleButton, Todos } from '@/components';
 import { TodoContext } from '@/contexts/TodoContext';
 import type TodoType from '@/interfaces/Todo';
 
@@ -37,6 +34,8 @@ const App: FC = () => {
 
   return (
     <div className='container'>
+      <ThemeToggleButton />
+
       <Header />
 
       {todos.length === 0 ? (
