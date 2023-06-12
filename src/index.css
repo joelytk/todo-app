@@ -56,6 +56,10 @@ ul {
   border: 1px solid var(--primary);
 }
 
+.dark .form-container {
+  border: 1px solid var(--primary-dark);
+}
+
 .checkbox-container {
   position: absolute;
   top: 18px;
@@ -92,6 +96,11 @@ ul {
   border-right: 1px solid var(--primary);
 }
 
+.dark .todo-list {
+  border-left: 1px solid var(--primary-dark);
+  border-right: 1px solid var(--primary-dark);
+}
+
 .todo-item {
   display: flex;
   justify-content: space-between;
@@ -102,6 +111,10 @@ ul {
 
 .todo-item:not(:last-child) {
   border-bottom: 1px solid var(--primary);
+}
+
+.dark .todo-item:not(:last-child) {
+  border-bottom: 1px solid var(--primary-dark);
 }
 
 .todo-item.completed {
@@ -120,9 +133,15 @@ ul {
   position: relative;
   height: 18px;
   width: 18px;
+  transition: all var(--transition-duration);
   background-color: var(--background);
   border: 1px solid var(--primary);
   cursor: pointer;
+}
+
+.dark .checkbox {
+  background-color: var(--background-dark);
+  border: 1px solid var(--primary-dark);
 }
 
 .checkbox:hover {
@@ -141,9 +160,14 @@ ul {
   top: -1px;
   width: 5px;
   height: 14px;
-  border: solid var(--primary);
   border-width: 0 2px 2px 0;
+  border-style: solid;
+  border-color: var(--primary);
   transform: rotate(45deg);
+}
+
+.dark .checkbox:after {
+  border-color: var(--primary-dark);
 }
 
 input:checked + .checkbox:after {
@@ -168,10 +192,20 @@ input:checked + .checkbox:after {
   outline: none;
 }
 
+.dark .todo-input {
+  border-bottom: 1px solid var(--primary-dark);
+  background-color: var(--background-dark);
+}
+
 .close-btn {
   display: none;
   width: 16px;
   height: 16px;
+  color: var(--primary);
+}
+
+.dark .close-btn {
+  color: var(--primary-dark);
 }
 
 .footer {
@@ -180,6 +214,10 @@ input:checked + .checkbox:after {
   border: 1px solid var(--primary);
   margin-bottom: 64px;
   height: 96px;
+}
+
+.dark .footer {
+  border: 1px solid var(--primary-dark);
 }
 
 .counter {
@@ -231,6 +269,11 @@ input:checked + .checkbox:after {
 
 .clear-completed-btn {
   float: right;
+  color: var(--primary);
+}
+
+.dark .clear-completed-btn {
+  color: var(--primary--dark);
 }
 
 .theme-toggle-btn {

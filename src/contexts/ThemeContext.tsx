@@ -1,5 +1,4 @@
-import type { FC, ReactNode } from 'react';
-import { createContext } from 'react';
+import { createContext, FC, ReactNode, useEffect } from 'react';
 
 import useLocalStorage from '@/hooks/useLocalStorage';
 
@@ -19,6 +18,10 @@ interface ThemeProviderProps {
 
 const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useLocalStorage('theme', 'dark');
+
+  useEffect(() => {
+    document.documentElement.className = 'dark';
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
