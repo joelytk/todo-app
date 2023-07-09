@@ -1,6 +1,6 @@
+import { XMarkIcon } from '@heroicons/react/24/solid';
 import type { ChangeEvent, FC, KeyboardEvent } from 'react';
 import { useContext, useState } from 'react';
-import { BsXLg } from 'react-icons/bs';
 
 import { TodoContext } from '@/contexts/TodoContext';
 import type TodoType from '@/interfaces/Todo';
@@ -11,7 +11,7 @@ interface TodosProps {
 
 const Todos: FC<TodosProps> = ({ todos }) => {
   return (
-    <ul className='todo-list'>
+    <ul className='mb-4'>
       {todos.map(todo => (
         <Todo key={todo.id} todo={todo} />
       ))}
@@ -59,7 +59,12 @@ const Todo: FC<TodoProps> = ({ todo }) => {
   };
 
   return (
-    <li className={`todo-item${completed ? ' completed' : ''}`}>
+    <li
+      className={`flex items-center px-4 py-2 border-b last-of-type:border-b-0 border-white cursor-pointer ${
+        completed ? ' line-through' : ''
+      }`}
+      onClick={() => toggleTodo(id)}
+    >
       <div className='todo-container'>
         <input type='checkbox' checked={completed} readOnly hidden />
         <span className='checkbox' onClick={() => toggleTodo(id)}></span>
@@ -80,7 +85,7 @@ const Todo: FC<TodoProps> = ({ todo }) => {
 
       {selectedId !== id && (
         <button className='btn close-btn' onClick={() => deleteTodo(id)}>
-          <BsXLg />
+          <XMarkIcon />
         </button>
       )}
     </li>

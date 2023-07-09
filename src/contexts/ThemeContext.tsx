@@ -20,7 +20,7 @@ const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useLocalStorage('theme', 'dark');
 
   useEffect(() => {
-    document.documentElement.className = 'dark';
+    document.documentElement.className = theme;
   }, []);
 
   const toggleTheme = () => {

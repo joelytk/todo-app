@@ -1,8 +1,6 @@
 import type { FC } from 'react';
 import { useContext } from 'react';
 
-import ClearButton from './ClearButton';
-import Counter from './Counter';
 import Tabs from './Tabs';
 
 import { TodoContext } from '@/contexts/TodoContext';
@@ -14,7 +12,8 @@ interface FooterProps {
 }
 
 const Footer: FC<FooterProps> = ({ activeTabIndex, handleTabChange }) => {
-  const { completedTodos } = useContext(TodoContext);
+  const { activeTodos, completedTodos, clearCompleted } =
+    useContext(TodoContext);
 
   const tabs: TabType[] = [
     { id: 1, label: 'All' },
@@ -23,14 +22,23 @@ const Footer: FC<FooterProps> = ({ activeTabIndex, handleTabChange }) => {
   ];
 
   return (
-    <footer className='footer'>
-      <Counter />
+    <footer className='flex justify-between items-center text-xs relative'>
+      <p className='counter'>
+        {activeTodos.length} item{activeTodos.length !== 1 && 's'} left
+      </p>
       <Tabs
         tabs={tabs}
         activeTabIndex={activeTabIndex}
         handleTabChange={handleTabChange}
       />
-      {completedTodos.length > 0 && <ClearButton />}
+      {completedTodos.length > 0 && (
+        <button
+          onClick={() => clearCompleted()}
+          className='btn btn-link clear-completed-btn'
+        >
+          Clear Completed
+        </button>
+      )}
     </footer>
   );
 };

@@ -10,7 +10,7 @@ interface TabsProps {
 
 const Tabs: FC<TabsProps> = ({ tabs, activeTabIndex, handleTabChange }) => {
   return (
-    <ul className='tabs'>
+    <nav className='flex items-center gap-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
       {tabs.map(tab => (
         <Tab
           key={tab.id}
@@ -19,7 +19,7 @@ const Tabs: FC<TabsProps> = ({ tabs, activeTabIndex, handleTabChange }) => {
           handleTabChange={handleTabChange}
         />
       ))}
-    </ul>
+    </nav>
   );
 };
 
@@ -31,12 +31,16 @@ interface TabProps {
 
 const Tab: FC<TabProps> = ({ tab, isActive, handleTabChange }) => {
   return (
-    <li
-      className={`tab-item${isActive ? ' active' : ''}`}
+    <a
+      className={`px-2 py-1 rounded cursor-pointer${
+        isActive
+          ? ' bg-zinc-800 text-zinc-200 dark:bg-zinc-200 dark:text-zinc-800'
+          : ''
+      }`}
       onClick={() => handleTabChange(tab.id)}
     >
       {tab.label}
-    </li>
+    </a>
   );
 };
 
